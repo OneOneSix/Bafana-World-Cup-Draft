@@ -20,6 +20,7 @@
   body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;}
   .hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:3rem 2rem 2rem;text-align:center;position:relative;overflow:hidden;}
   .hero::before{content:'2026';position:absolute;font-family:var(--font-display);font-size:22vw;color:rgba(255,255,255,0.022);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+  @media(max-width:600px){.hero::before{font-size:55vw;}}
   .hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5.5rem);letter-spacing:.04em;line-height:1;color:#fff;margin-bottom:.5rem;}
   .hero h1 span{color:var(--green);}
   .hero-sub{font-size:13px;color:var(--muted);font-family:var(--font-mono);margin-bottom:2rem;}
@@ -240,7 +241,7 @@ function buildList(elId, data, isTop) {
     row.innerHTML = `
       <div class="rank-badge ${isOut ? 'bot-badge' : badgeClass(i)}">${isOut ? '—' : i+1}</div>
       <div class="player-name ${isOut ? 'eliminated' : ''}">${d.player}</div>
-      <span class="team-tag ${isTop?'tag-top':'tag-bot'} ${isOut?'eliminated':''}">${d.team} ${flags[d.team]?`<img src="https://flagcdn.com/16x12/${flags[d.team]}.png" alt="${d.team}" style="vertical-align:middle;margin-left:3px;border-radius:1px;">`:''}</span>
+      <span class="team-tag ${isTop?'tag-top':'tag-bot'} ${isOut?'eliminated':''}">${d.team} ${flags[d.team]?`<img src="https://flagcdn.com/32x24/${flags[d.team]}.png" alt="${d.team}" style="vertical-align:middle;margin-left:3px;border-radius:1px;width:16px;height:12px;">`:''}</span>
       <div class="bar-wrap">
         <div class="bar-bg"><div class="bar-fill" style="width:${isOut?0:pct.toFixed(1)}%;background:${isOut?'#444':barCol(i)};"></div></div>
         <div class="bar-val ${isOut?'eliminated':''}">${isOut ? 'eliminated' : d.livePct.toFixed(2)+'%'}</div>
