@@ -20,7 +20,6 @@
   body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;}
   .hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:3rem 2rem 2rem;text-align:center;position:relative;overflow:hidden;}
   .hero::before{content:'WC 2026';position:absolute;font-family:var(--font-display);font-size:22vw;color:rgba(255,255,255,0.022);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
-  .hero-badge{display:inline-block;font-family:var(--font-mono);font-size:11px;color:var(--green);border:1px solid var(--green-mid);padding:3px 12px;border-radius:20px;margin-bottom:1rem;letter-spacing:.1em;text-transform:uppercase;}
   .hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5.5rem);letter-spacing:.04em;line-height:1;color:#fff;margin-bottom:.5rem;}
   .hero h1 span{color:var(--green);}
   .hero-sub{font-size:13px;color:var(--muted);font-family:var(--font-mono);margin-bottom:2rem;}
@@ -32,13 +31,6 @@
   .section-header{display:flex;align-items:baseline;gap:12px;margin-bottom:1.25rem;}
   .section-title{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.05em;color:#fff;}
   .section-meta{font-size:11px;font-family:var(--font-mono);color:var(--muted);padding:2px 8px;border:1px solid var(--border);border-radius:4px;}
-  .method-box{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--muted);line-height:1.8;}
-  .method-box strong{color:var(--text);font-weight:500;}
-  .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem;}
-  .metric-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;}
-  .metric-label{font-size:11px;color:var(--muted);margin-bottom:3px;}
-  .metric-val{font-size:20px;font-weight:500;color:var(--text);}
-  .metric-sub{font-size:11px;color:var(--muted);}
   .card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;}
   .player-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
   .player-row:last-child{border-bottom:none;}
@@ -47,28 +39,24 @@
   .mid-badge{background:#B5D4F4;color:#0C447C;}
   .bot-badge{background:#D3D1C7;color:#444441;}
   .player-name{font-weight:500;font-size:14px;color:#fff;min-width:60px;}
+  .player-name.eliminated{text-decoration:line-through;color:var(--muted);}
   .team-tag{display:inline-block;font-size:11px;font-family:var(--font-mono);padding:2px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;}
+  .team-tag.eliminated{text-decoration:line-through;opacity:0.4;}
   .tag-top{background:rgba(55,138,221,.15);color:#85B7EB;border:1px solid rgba(55,138,221,.3);}
   .tag-bot{background:rgba(29,158,117,.15);color:#5DCAA5;border:1px solid rgba(29,158,117,.3);}
   .bar-wrap{flex:1;display:flex;align-items:center;gap:8px;}
   .bar-bg{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:3px;}
+  .bar-fill{height:100%;border-radius:3px;transition:width 0.5s ease;}
   .bar-val{font-size:12px;font-family:var(--font-mono);color:var(--muted);min-width:42px;text-align:right;}
+  .bar-val.eliminated{color:rgba(255,75,75,0.6);}
   .round-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
   .round-btn{font-size:12px;padding:5px 13px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;font-family:var(--font-body);}
   .round-btn:hover{background:rgba(255,255,255,.06);color:var(--text);}
   .round-btn.active-top{background:rgba(55,138,221,.15);border-color:rgba(55,138,221,.5);color:#85B7EB;font-weight:500;}
   .round-btn.active-bot{background:rgba(29,158,117,.15);border-color:rgba(29,158,117,.5);color:#5DCAA5;font-weight:500;}
   .chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;}
-  .insights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;}
-  .insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem 1rem 1.5rem;font-size:13px;color:var(--muted);line-height:1.7;position:relative;}
-  .insight-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;}
-  .insight-card.green::before{background:var(--green);}
-  .insight-card.gold::before{background:var(--gold);}
-  .insight-card.red::before{background:var(--red);}
-  .insight-card strong{color:var(--text);font-weight:500;}
   footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-size:12px;color:var(--muted);font-family:var(--font-mono);}
-  @media(max-width:600px){.grid-4{grid-template-columns:repeat(2,1fr);}.player-name{min-width:44px;font-size:13px;}}
+  @media(max-width:600px){.player-name{min-width:44px;font-size:13px;}}
 </style>
 </head>
 <body>
@@ -115,12 +103,18 @@
     </div>
   </div>
 
-
 </div>
 
 <footer>Made with ❤️ by Adrian Hidalgo (YouBetterChill) · Source: FIFA Rankings April 2026</footer>
 
 <script>
+// ============================================================
+// ELIMINATIONS — update this list as teams get knocked out
+// e.g. const eliminated = ["Haiti", "New Zealand", "Saudi Arabia"];
+// ============================================================
+const eliminated = [];
+
+// Base prize probabilities from 100,000 Monte Carlo simulations
 const topPrize = [
   {player:"Vlad",   team:"France",      pct:16.37},
   {player:"Nando",  team:"Argentina",   pct:14.56},
@@ -159,6 +153,7 @@ const botPrize = [
   {player:"Vlad",   team:"Haiti",        pct:0.70},
   {player:"Rafiki", team:"New Zealand",  pct:0.66},
 ];
+
 const roundProbs = {
   "France":      {grp:81.6,r32:57.0,r16:37.2,qf:24.0,sf:14.3,fin:14.3},
   "Argentina":   {grp:69.6,r32:50.0,r16:33.9,qf:21.2,sf:13.0,fin:13.0},
@@ -195,6 +190,7 @@ const roundProbs = {
   "Haiti":       {grp:0.7, r32:0.1, r16:0.0, qf:0.0, sf:0.0, fin:0.0 },
   "New Zealand": {grp:0.5, r32:0.0, r16:0.0, qf:0.0, sf:0.0, fin:0.0 },
 };
+
 const roundDefs = [
   {key:'grp',label:'Group stage'},
   {key:'r32',label:'Round of 32'},
@@ -204,23 +200,41 @@ const roundDefs = [
   {key:'fin',label:'Final'},
 ];
 
+// Redistribute probabilities among non-eliminated teams
+function redistribute(data) {
+  const active = data.filter(d => !eliminated.includes(d.team));
+  const totalActive = active.reduce((s, d) => s + d.pct, 0);
+  return data.map(d => {
+    if (eliminated.includes(d.team)) return {...d, livePct: 0};
+    return {...d, livePct: totalActive > 0 ? (d.pct / totalActive * 100) : 0};
+  });
+}
+
 function badgeClass(i){return i<3?'top-badge':i<10?'mid-badge':'bot-badge';}
 function barCol(i){return i<3?'#EF9F27':i<10?'#378ADD':'#888780';}
 
 function buildList(elId, data, isTop) {
   const el = document.getElementById(elId);
-  const maxPct = data[0].pct;
-  data.forEach((d,i)=>{
-    const pct = (d.pct/maxPct*100);
+  const live = redistribute(data);
+  // Sort: active first by livePct, eliminated last
+  live.sort((a,b) => {
+    if (a.livePct === 0 && b.livePct > 0) return 1;
+    if (b.livePct === 0 && a.livePct > 0) return -1;
+    return b.livePct - a.livePct;
+  });
+  const maxPct = live.find(d => d.livePct > 0)?.livePct || 1;
+  live.forEach((d, i) => {
+    const isOut = eliminated.includes(d.team);
+    const pct = (d.livePct / maxPct * 100);
     const row = document.createElement('div');
     row.className = 'player-row';
     row.innerHTML = `
-      <div class="rank-badge ${badgeClass(i)}">${i+1}</div>
-      <div class="player-name">${d.player}</div>
-      <span class="team-tag ${isTop?'tag-top':'tag-bot'}">${d.team}</span>
+      <div class="rank-badge ${isOut ? 'bot-badge' : badgeClass(i)}">${isOut ? '—' : i+1}</div>
+      <div class="player-name ${isOut ? 'eliminated' : ''}">${d.player}</div>
+      <span class="team-tag ${isTop?'tag-top':'tag-bot'} ${isOut?'eliminated':''}">${d.team}</span>
       <div class="bar-wrap">
-        <div class="bar-bg"><div class="bar-fill" style="width:${pct.toFixed(1)}%;background:${barCol(i)};"></div></div>
-        <div class="bar-val">${d.pct.toFixed(2)}%</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${isOut?0:pct.toFixed(1)}%;background:${isOut?'#444':barCol(i)};"></div></div>
+        <div class="bar-val ${isOut?'eliminated':''}">${isOut ? 'eliminated' : d.livePct.toFixed(2)+'%'}</div>
       </div>`;
     el.appendChild(row);
   });
@@ -237,7 +251,11 @@ function buildChart(canvasId, data, roundKey, color) {
     type:'bar',
     data:{
       labels:sorted.map(d=>d.player+' ('+d.team+')'),
-      datasets:[{data:sorted.map(d=>roundProbs[d.team]?.[roundKey]||0),backgroundColor:color,borderRadius:4}]
+      datasets:[{
+        data:sorted.map(d=>roundProbs[d.team]?.[roundKey]||0),
+        backgroundColor:sorted.map(d=>eliminated.includes(d.team)?'rgba(100,100,100,0.3)':color),
+        borderRadius:4
+      }]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
@@ -278,8 +296,6 @@ buildButtons('btns-top','top');
 buildButtons('btns-bot','bot');
 updateChart('top','grp');
 updateChart('bot','grp');
-
-
 </script>
 </body>
 </html>
