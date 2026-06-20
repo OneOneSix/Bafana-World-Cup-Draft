@@ -270,13 +270,16 @@ function buildChart(canvasId, data, roundKey, color) {
       labels:sorted.map(d=>d.player+' ('+d.team+')'),
       datasets:[{
         data:sorted.map(d=>roundProbs[d.team]?.[roundKey]||0),
-        backgroundColor:sorted.map(d=>eliminated.includes(d.team)?'rgba(100,100,100,0.3)':color),
+        backgroundColor:sorted.map(d=>eliminated.includes(d.team)?'rgba(180,60,60,0.45)':color),
         borderRadius:4
       }]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(1)+'%'}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{
+        const d = sorted[c.dataIndex];
+        return eliminated.includes(d.team) ? c.parsed.y.toFixed(1)+'% (eliminated)' : c.parsed.y.toFixed(1)+'%';
+      }}}},
       scales:{
         x:{ticks:{color:'#6b7a91',font:{size:9,family:'DM Mono'},autoSkip:false,maxRotation:50},grid:{color:'rgba(255,255,255,0.04)'},border:{color:'rgba(255,255,255,0.07)'}},
         y:{ticks:{callback:v=>v+'%',color:'#6b7a91',font:{size:10,family:'DM Mono'}},max:100,grid:{color:'rgba(255,255,255,0.04)'},border:{color:'rgba(255,255,255,0.07)'}}
