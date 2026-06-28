@@ -106,7 +106,7 @@
 // Losing team is automatically marked as eliminated
 // ============================================================
 const results = {
-  'M1': 'Canada',
+  'M73': 'Canada',
 };
 
 // ============================================================
@@ -189,57 +189,57 @@ const bracketRounds = [
   {
     key:'r32', label:'Round of 32', desc:'Round of 32',
     matches:[
-      {id:'M1',  a:'South Africa', b:'Canada'},
-      {id:'M2',  a:'Brazil',       b:'Japan'},
-      {id:'M3',  a:'Germany',      b:'Paraguay'},
-      {id:'M4',  a:'Netherlands',  b:'Morocco'},
-      {id:'M5',  a:'Ivory Coast',  b:'Norway'},
-      {id:'M6',  a:'France',       b:'Sweden'},
-      {id:'M7',  a:'Mexico',       b:'Ecuador'},
-      {id:'M8',  a:'England',      b:'Congo DR'},
-      {id:'M9',  a:'Belgium',      b:'Senegal'},
-      {id:'M10', a:'USA',          b:'Bosnia'},
-      {id:'M11', a:'Spain',        b:'Austria'},
-      {id:'M12', a:'Portugal',     b:'Croatia'},
-      {id:'M13', a:'Switzerland',  b:'Algeria'},
-      {id:'M14', a:'Australia',    b:'Egypt'},
-      {id:'M15', a:'Argentina',    b:'Cape Verde'},
-      {id:'M16', a:'Colombia',     b:'Ghana'},
+      {id:'M74', a:'Germany',      b:'Paraguay'},
+      {id:'M77', a:'France',       b:'Sweden'},
+      {id:'M73', a:'South Africa', b:'Canada'},
+      {id:'M75', a:'Netherlands',  b:'Morocco'},
+      {id:'M83', a:'Portugal',     b:'Croatia'},
+      {id:'M84', a:'Spain',        b:'Austria'},
+      {id:'M81', a:'USA',          b:'Bosnia'},
+      {id:'M82', a:'Belgium',      b:'Senegal'},
+      {id:'M76', a:'Brazil',       b:'Japan'},
+      {id:'M78', a:'Ivory Coast',  b:'Norway'},
+      {id:'M79', a:'Mexico',       b:'Ecuador'},
+      {id:'M80', a:'England',      b:'Congo DR'},
+      {id:'M86', a:'Argentina',    b:'Cape Verde'},
+      {id:'M88', a:'Australia',    b:'Egypt'},
+      {id:'M85', a:'Switzerland',  b:'Algeria'},
+      {id:'M87', a:'Colombia',     b:'Ghana'},
     ]
   },
   {
     key:'r16', label:'Round of 16', desc:'Round of 16',
     matches:[
-      {id:'R16-1', a:'M1',  b:'M3'},
-      {id:'R16-2', a:'M2',  b:'M5'},
-      {id:'R16-3', a:'M4',  b:'M6'},
-      {id:'R16-4', a:'M7',  b:'M8'},
-      {id:'R16-5', a:'M11', b:'M12'},
-      {id:'R16-6', a:'M9',  b:'M10'},
-      {id:'R16-7', a:'M14', b:'M16'},
-      {id:'R16-8', a:'M13', b:'M15'},
+      {id:'M89', a:'M74', b:'M77'},
+      {id:'M90', a:'M73', b:'M75'},
+      {id:'M93', a:'M83', b:'M84'},
+      {id:'M94', a:'M81', b:'M82'},
+      {id:'M91', a:'M76', b:'M78'},
+      {id:'M92', a:'M79', b:'M80'},
+      {id:'M95', a:'M86', b:'M88'},
+      {id:'M96', a:'M85', b:'M87'},
     ]
   },
   {
     key:'qf', label:'Quarter-finals', desc:'Quarter-finals',
     matches:[
-      {id:'QF-1', a:'R16-1', b:'R16-2'},
-      {id:'QF-2', a:'R16-3', b:'R16-4'},
-      {id:'QF-3', a:'R16-5', b:'R16-6'},
-      {id:'QF-4', a:'R16-7', b:'R16-8'},
+      {id:'M97', a:'M89', b:'M90'},
+      {id:'M98', a:'M93', b:'M94'},
+      {id:'M99', a:'M91', b:'M92'},
+      {id:'M100', a:'M95', b:'M96'},
     ]
   },
   {
     key:'sf', label:'Semi-finals', desc:'Semi-finals',
     matches:[
-      {id:'SF-1', a:'QF-1', b:'QF-2'},
-      {id:'SF-2', a:'QF-3', b:'QF-4'},
+      {id:'M101', a:'M97', b:'M99'},
+      {id:'M102', a:'M98', b:'M100'},
     ]
   },
   {
     key:'fin', label:'Final', desc:'🏆 The Final',
     matches:[
-      {id:'FIN', a:'SF-1', b:'SF-2'},
+      {id:'M104', a:'M101', b:'M102'},
     ]
   },
 ];
@@ -372,8 +372,23 @@ function renderBracket() {
   const round = bracketRounds.find(r=>r.key===activeBracketRound);
   document.getElementById('bracket-desc').textContent = round.desc;
   const grid = document.getElementById('bracket-grid');
-  grid.style.gridTemplateColumns = round.matches.length === 1 ? '1fr' : 'repeat(2,1fr)';
-  grid.innerHTML = round.matches.map(m=>renderBracketMatch(m)).join('');
+
+  if(round.matches.length <= 2) {
+    grid.style.gridTemplateColumns = '1fr 1fr';
+    grid.innerHTML = round.matches.map(m=>renderBracketMatch(m)).join('');
+  } else if(round.matches.length === 1) {
+    grid.style.gridTemplateColumns = '1fr';
+    grid.innerHTML = renderBracketMatch(round.matches[0]);
+  } else {
+    // Split into left and right halves
+    grid.style.gridTemplateColumns = '1fr 1fr';
+    const half = Math.ceil(round.matches.length / 2);
+    const left = round.matches.slice(0, half);
+    const right = round.matches.slice(half);
+    const leftCol = `<div style="display:flex;flex-direction:column;gap:10px;">${left.map(m=>renderBracketMatch(m)).join('')}</div>`;
+    const rightCol = `<div style="display:flex;flex-direction:column;gap:10px;">${right.map(m=>renderBracketMatch(m)).join('')}</div>`;
+    grid.innerHTML = leftCol + rightCol;
+  }
 }
 
 function buildBracketNav() {
