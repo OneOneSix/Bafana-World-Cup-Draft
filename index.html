@@ -345,7 +345,7 @@ function renderBracketTeam(rawId, winner, goals, pens) {
   const scoreText = (goals !== null && goals !== undefined)
     ? `${goals}${pens!==null&&pens!==undefined?` (${pens})`:''}`
     : '';
-  return `<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;${winBg}">
+  return `<div style="display:flex;align-items:center;gap:8px;padding:0 10px;flex:1;${winBg}">
     ${flagEl}
     <span style="font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${isTbd?'color:var(--muted);font-style:italic;':nameColor}">${isTbd?'TBD':name}</span>
     ${tag}${dot}
@@ -362,9 +362,9 @@ function renderBracketMatch(match) {
   const clashBadge = clash
     ? `<span style="font-size:9px;background:rgba(245,197,66,.2);color:#BA7517;border:1px solid rgba(245,197,66,.4);border-radius:20px;padding:2px 10px;font-weight:500;">⚡ Clash</span>`
     : '';
-  const divider = `<div style="height:1px;background:var(--border);"></div>`;
-  return `<div style="background:var(--bg2);${borderStyle}border-radius:10px;overflow:hidden;">
-    <div style="font-size:10px;color:var(--muted);font-family:var(--font-mono);padding:4px 10px 3px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+  const divider = `<div style="height:1px;background:var(--border);flex-shrink:0;"></div>`;
+  return `<div style="background:var(--bg2);${borderStyle}border-radius:10px;overflow:hidden;height:104px;display:flex;flex-direction:column;">
+    <div style="font-size:10px;color:var(--muted);font-family:var(--font-mono);padding:5px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;height:30px;flex-shrink:0;">
       <span>${match.id}</span>${clashBadge}<span></span>
     </div>
     ${renderBracketTeam(match.a, winner, r.a ?? null, r.aPen ?? null)}
