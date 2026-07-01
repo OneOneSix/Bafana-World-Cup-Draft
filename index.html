@@ -343,7 +343,7 @@ function renderBracketTeam(rawId, winner, goals, pens) {
   const dot = isWinner
     ? `<div style="width:6px;height:6px;border-radius:50%;background:#00C27C;"></div>`
     : `<div style="width:6px;"></div>`;
-  const nameColor = info ? (info.type==='top'?'color:#85B7EB;font-weight:500;':'color:#5DCAA5;font-weight:500;') : 'color:var(--text);';
+  const nameColor = 'color:var(--text);';
   const winBg = isWinner ? 'background:linear-gradient(90deg, rgba(0,194,124,0.16), rgba(0,194,124,0.03));' : '';
   const scoreText = (goals !== null && goals !== undefined)
     ? `${goals}${pens!==null&&pens!==undefined?` (${pens})`:''}`
